@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { JobPortalContext } from "../App";
 import CustomBox from "../components/CustomBox";
 import CustomContainer from "../components/CustomContainer";
 import CustomHeader from "../components/CustomHeader";
@@ -6,8 +7,13 @@ import CustomInputfield from "../components/CustomInputfield";
 import CustomLabel from "../components/CustomLabel";
 
 const Step1Form = () => {
+  const formData: any = useContext(JobPortalContext);
+  const { createJobData, handleChange, setStep } = formData;
   return (
-    <CustomContainer btnText="Next">
+    <CustomContainer
+      btnText="Next"
+      handleClick={setStep ? () => setStep(2) : () => {}}
+    >
       <CustomHeader headerLabel="Create a job" stepCount={1} />
       <CustomBox>
         <CustomLabel
@@ -20,44 +26,52 @@ const Step1Form = () => {
           id="job-title"
           type="text"
           placeholder="ex. UX UI Designer"
+          value={createJobData.jobTitle}
+          handleChange={handleChange}
         />
       </CustomBox>
       <CustomBox>
         <CustomLabel
           labelText="Company name"
-          htmlFor="CompanyName"
+          htmlFor="companyName"
           isRequired={true}
         />
         <CustomInputfield
-          name="CompanyName"
+          name="companyName"
           id="Company-name"
           type="text"
           placeholder="ex. Google"
+          value={createJobData.companyName}
+          handleChange={handleChange}
         />
       </CustomBox>
       <CustomBox>
         <CustomLabel
           labelText="Industry"
-          htmlFor="Industry"
+          htmlFor="industry"
           isRequired={true}
         />
         <CustomInputfield
-          name="Industry"
+          name="industry"
           id="Industry"
           type="text"
           placeholder="ex. Information Technology "
+          value={createJobData.industry}
+          handleChange={handleChange}
         />
       </CustomBox>
       <div className="grid grid-cols-2 gap-4">
         <div>
           <CustomBox width="w-244">
-            <CustomLabel labelText="Location" htmlFor="Location" />
+            <CustomLabel labelText="Location" htmlFor="location" />
             <CustomInputfield
-              name="Location"
+              name="location"
               id="Location"
               type="text"
               placeholder="ex. Chennai"
               width="w-244"
+              value={createJobData.location}
+              handleChange={handleChange}
             />
           </CustomBox>
         </div>
@@ -65,15 +79,17 @@ const Step1Form = () => {
           <CustomBox width="w-244">
             <CustomLabel
               labelText="Remote type"
-              htmlFor="RemoteType"
+              htmlFor="remoteType"
               isRequired={true}
             />
             <CustomInputfield
-              name="RemoteType"
+              name="remoteType"
               id="Remote-type"
               type="text"
               placeholder="ex. In-office"
               width="w-244"
+              value={createJobData.remoteType}
+              handleChange={handleChange}
             />
           </CustomBox>
         </div>

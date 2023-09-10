@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { JobPortalContext } from "../App";
 import CustomBox from "../components/CustomBox";
 import CustomContainer from "../components/CustomContainer";
 import CustomHeader from "../components/CustomHeader";
@@ -7,8 +8,13 @@ import CustomLabel from "../components/CustomLabel";
 import CustomRadioButton from "../components/CustomRadioButton";
 
 const Step2Form = () => {
+  const formData: any = useContext(JobPortalContext);
+  const { createJobData, handleChange, setStep } = formData;
   return (
-    <CustomContainer btnText="Next">
+    <CustomContainer
+      btnText="Save"
+      handleClick={() => console.log("createJobData", createJobData)}
+    >
       <CustomHeader headerLabel="Create a job" stepCount={2} />
       <CustomBox>
         <CustomLabel labelText="Experience" htmlFor="Experience" />
@@ -20,6 +26,8 @@ const Step2Form = () => {
               type="number"
               placeholder="Minimum"
               width="w-244"
+              value={createJobData.minExperience}
+              handleChange={handleChange}
             />
           </div>
           <div>
@@ -29,6 +37,8 @@ const Step2Form = () => {
               type="number"
               placeholder="Maximum"
               width="w-244"
+              value={createJobData.maxExperience}
+              handleChange={handleChange}
             />
           </div>
         </div>
@@ -43,6 +53,8 @@ const Step2Form = () => {
               type="number"
               placeholder="Minimum"
               width="w-244"
+              value={createJobData.minSalary}
+              handleChange={handleChange}
             />
           </div>
           <div>
@@ -52,17 +64,21 @@ const Step2Form = () => {
               type="number"
               placeholder="Maximum"
               width="w-244"
+              value={createJobData.maxSalary}
+              handleChange={handleChange}
             />
           </div>
         </div>
       </CustomBox>
       <CustomBox>
-        <CustomLabel labelText="Total employee" htmlFor="TotalEmployee" />
+        <CustomLabel labelText="Total employee" htmlFor="totalEmployee" />
         <CustomInputfield
-          name="TotalEmployee"
+          name="totalEmployee"
           id="Total-Employee"
           type="number"
           placeholder="ex. 100"
+          value={createJobData.totalEmployee}
+          handleChange={handleChange}
         />
       </CustomBox>
       <CustomBox>

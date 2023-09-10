@@ -1,3 +1,75 @@
-export const colorPallete = {
-    alert : '#D86161'
-}
+export const dummyData = [
+    {
+      id: 1,
+      jobTitle: "Software Engineer",
+      industry: "Information Technology",
+      companyName: "Tech Innovators",
+      maxExperience: 6,
+      minExperience: 3,
+      location: "San Francisco",
+      remoteType: "Remote",
+      maxSalary: 80000,
+      minSalary: 40000,
+      totalEmployee: 50,
+      applyType: "Apply Now",
+    },
+    {
+      id: 2,
+      jobTitle: "Data Scientist",
+      industry: "Data Analytics",
+      companyName: "Data Insights",
+      maxExperience: 5,
+      minExperience: 2,
+      location: "New York City",
+      remoteType: "Hybrid",
+      maxSalary: 75000,
+      minSalary: 35000,
+      totalEmployee: 30,
+      applyType: "Apply Now",
+    },
+    {
+      id: 3,
+      jobTitle: "Product Manager",
+      industry: "Product Management",
+      companyName: "Product Masters",
+      maxExperience: 7,
+      minExperience: 4,
+      location: "Seattle",
+      remoteType: "In-office",
+      maxSalary: 90000,
+      minSalary: 45000,
+      totalEmployee: 40,
+      applyType: "Apply Now",
+    },
+    {
+      id: 4,
+      jobTitle: "Graphic Designer",
+      industry: "Design",
+      companyName: "Creative Designs",
+      maxExperience: 3,
+      minExperience: 1,
+      location: "Los Angeles",
+      remoteType: "Remote",
+      maxSalary: 60000,
+      minSalary: 30000,
+      totalEmployee: 25,
+      applyType: "Apply Now",
+    },
+  ];
+    
+
+  export const emptyJobObject = {
+    id: Math.random(), 
+    jobTitle: "",
+    industry: "",
+    companyName: "",
+    maxExperience: 0,
+    minExperience: 0,
+    location: "",
+    remoteType: "",
+    maxSalary: 0,
+    minSalary: 0,
+    totalEmployee: 0,
+    applyType: "",
+  };
+

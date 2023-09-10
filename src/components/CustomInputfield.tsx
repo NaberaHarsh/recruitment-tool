@@ -3,6 +3,8 @@ import { IInputProps } from "../types";
 
 const CustomInputfield = (props: IInputProps) => {
   const {
+    value,
+    handleChange,
     type,
     name,
     id,
@@ -27,6 +29,8 @@ const CustomInputfield = (props: IInputProps) => {
       placeholder={placeholder}
       defaultValue={defaultValue}
       className={`outline-none ${height} ${width} ${border} ${borderRadius} ${padding} ${gap} ${fontSize} ${fontWeight} ${lineHeight}`}
+      value={value}
+      onChange={(e) => handleChange(name, e.target.value)}
     />
   );
 };
