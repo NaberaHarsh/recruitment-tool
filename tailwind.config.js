@@ -57,6 +57,9 @@ module.exports = {
         577: "36.0625rem",
         782: "48.875rem",
       },
+      border: {
+        "border-primary-200": "#1597E4",
+      },
     },
   },
   plugins: [],

@@ -2,7 +2,16 @@ import React from "react";
 import { IRadioProps } from "../types";
 
 const CustomRadioButton = (props: IRadioProps) => {
-  const { name, label, id, htmlFor, height = "h-20", width = "w-107" } = props;
+  const {
+    name,
+    label,
+    id,
+    htmlFor,
+    height = "h-20",
+    width = "w-107",
+    selectedValue,
+    handleChange,
+  } = props;
 
   return (
     <div className={`flex ${height} ${width} gap-1`}>
@@ -11,6 +20,8 @@ const CustomRadioButton = (props: IRadioProps) => {
         name={name}
         type="radio"
         className="h-5 w-5 border-2 border-gray-300"
+        checked={selectedValue === label}
+        onChange={() => handleChange(name, label)}
       />
       <label
         htmlFor={htmlFor}

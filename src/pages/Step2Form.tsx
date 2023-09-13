@@ -86,20 +86,24 @@ const Step2Form = () => {
         <div className="grid grid-cols-2 gap-4 py-2 px-0 h-36 w-246">
           <div>
             <CustomRadioButton
-              name="typeRadioBtn"
+              name="applyType"
               id="quick-apply"
               label="Quick apply"
               htmlFor="typeRadioBtn"
               width="w-107"
+              selectedValue={createJobData.applyType}
+              handleChange={handleChange}
             />
           </div>
           <div>
             <CustomRadioButton
-              name="typeRadioBtn"
+              name="applyType"
               id="external-apply"
               label="External apply"
               htmlFor="typeRadioBtn"
               width="w-123"
+              selectedValue={createJobData.applyType}
+              handleChange={handleChange}
             />
           </div>
         </div>

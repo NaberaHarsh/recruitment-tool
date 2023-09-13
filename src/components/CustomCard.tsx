@@ -6,6 +6,7 @@ import { ICardProps } from "../types";
 import CustomButton from "./CustomButton";
 import { TrashIcon, PencilIcon } from "@heroicons/react/solid";
 import { JobPortalContext } from "../App";
+import { applyNowStr, externalApplyStr } from "../constants";
 
 const CustomCard = (props: ICardProps) => {
   const formData: any = useContext(JobPortalContext);
@@ -60,12 +61,22 @@ const CustomCard = (props: ICardProps) => {
             </CustomCardDescription>
           </div>
           <div>
-            <CustomButton
-              width={applyType === "Apply Now" ? "w-36" : "w-44"}
-              handleClick={() => {}}
-            >
-              {applyType}
-            </CustomButton>
+            {applyType &&
+              (applyType === "Quick apply" ? (
+                <CustomButton width={"w-36"} handleClick={() => {}}>
+                  {applyNowStr}
+                </CustomButton>
+              ) : (
+                <CustomButton
+                  width={"w-44"}
+                  handleClick={() => {}}
+                  color="text-primary"
+                  backgroundColor="bg-transparent"
+                  border="border border-2"
+                >
+                  {externalApplyStr}
+                </CustomButton>
+              ))}
           </div>
         </div>
         <div className="col-span-1 flex justify-end gap-2">

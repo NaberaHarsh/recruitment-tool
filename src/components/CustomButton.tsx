@@ -15,10 +15,11 @@ const CustomButton = (props: IButtonProps) => {
     fontFamily = "font-Poppins",
     backgroundColor = "bg-primary",
     color = "text-white",
+    borderColor = "text-primary",
   } = props;
   return (
     <button
-      className={` flex justify-center ${height} ${width} ${borderRadius} ${padding} ${backgroundColor} ${color} ${fontSize} ${fontWeight} ${fontFamily}`}
+      className={` flex justify-center ${height} ${width} ${borderRadius} ${padding} ${backgroundColor} ${color} ${fontSize} ${fontWeight} ${fontFamily} ${border} ${borderColor}`}
       onClick={handleClick}
     >
       {children}

@@ -16,6 +16,8 @@ function App() {
     emptyJobObject
   );
 
+  console.log("createJobData", createJobData);
+
   const handleDelete = (id: string) => {
     const data = [...jobsData];
     const filteredData = data.filter((ele) => ele.id !== id);

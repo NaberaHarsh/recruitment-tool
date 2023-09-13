@@ -11,7 +11,7 @@ export const dummyData = [
       maxSalary: "80000",
       minSalary: "40000",
       totalEmployee: "50",
-      applyType: "Apply Now",
+      applyType: "Quick apply",
     },
     {
       id: "2",
@@ -25,7 +25,7 @@ export const dummyData = [
       maxSalary: "75000",
       minSalary: "35000",
       totalEmployee: "30",
-      applyType: "Apply Now",
+      applyType: "Quick apply",
     },
     {
       id: "3",
@@ -39,7 +39,7 @@ export const dummyData = [
       maxSalary: "90000",
       minSalary: "45000",
       totalEmployee: "40",
-      applyType: "Apply Now",
+      applyType: "External apply",
     },
     {
       id: "4",
@@ -53,7 +53,7 @@ export const dummyData = [
       maxSalary: "60000",
       minSalary: "30000",
       totalEmployee: "25",
-      applyType: "Apply Now",
+      applyType: "Quick apply",
     },
   ];
     
@@ -72,4 +72,7 @@ export const dummyData = [
     totalEmployee: "",
     applyType: "",
   };
+
+  export const applyNowStr = "Apply Now";
+  export const externalApplyStr = "External Apply"
 

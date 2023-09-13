@@ -58,7 +58,9 @@ export interface IRadioProps {
     id : string;
     htmlFor : string;
     height ? : string;
-    width?: string
+    width?: string;
+    selectedValue : string;
+    handleChange : (key:string,value:string | undefined)=> void
 }
 
 
@@ -76,6 +78,7 @@ export interface IButtonProps  {
     lineHeight?: string;
     fontFamily? : string;
     backgroundColor? : string;
+    borderColor? : string;
     handleClick : () => void;
 }
 
