@@ -30,8 +30,8 @@ export interface IInputProps {
     fontSize?: string;
     fontWeight?: string;
     lineHeight?: string;
-    value: string | number | undefined;
-    handleChange : (key:string,value:string | number | undefined)=> void
+    value: string | undefined;
+    handleChange : (key:string,value:string | undefined)=> void
 }
 
 export interface IBoxProps {
@@ -88,17 +88,17 @@ export interface ILogoImageProps {
 }
 
 export interface ICardProps {
-    id : number,
+    id : string,
 jobTitle : string;
 companyName : string;
 industry : string;
 location?: string;
 remoteType? : string;
-minExperience? : number;
-maxExperience ? : number;
-minSalary? : number;
-maxSalary? : number;
-totalEmployee? : number;
+minExperience? : string;
+maxExperience ? : string;
+minSalary? : string;
+maxSalary? : string;
+totalEmployee? : string;
 applyType? : string;
 }
 
@@ -114,22 +114,22 @@ export interface ICardDescription {
 
 export interface IViewJobsProps {
     jobsData : {}[],
-    handleDelete : (id:number)=> void;
-    handleEdit : (id:number)=> void;
+    handleDelete : (id:string)=> void;
+    handleEdit : (id:string)=> void;
 }
 
 export interface IJobListingProps {
-    id: number;
+    id: string;
     jobTitle: string;
     industry: string;
     companyName: string;
-    maxExperience: number;
-    minExperience: number;
+    maxExperience: string;
+    minExperience: string;
     location: string;
     remoteType: string;
-    maxSalary: number;
-    minSalary: number;
-    totalEmployee: number;
+    maxSalary: string;
+    minSalary: string;
+    totalEmployee: string;
     applyType: string;
   }
 

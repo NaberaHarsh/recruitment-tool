@@ -16,7 +16,7 @@ function App() {
     emptyJobObject
   );
 
-  const handleDelete = (id: number) => {
+  const handleDelete = (id: string) => {
     const data = [...jobsData];
     const filteredData = data.filter((ele) => ele.id !== id);
     setJobsData(filteredData);
@@ -25,16 +25,17 @@ function App() {
   const handleClose = () => {
     setOpen(false);
     setCreateJobData(emptyJobObject);
+    setStep(1);
   };
 
-  const handleEdit = (id: number) => {
+  const handleEdit = (id: string) => {
     const data = [...jobsData];
     const filteredData: any = data.find((ele) => ele.id === id);
     setCreateJobData(filteredData);
     setOpen(true);
   };
 
-  const handleChange = (key: string, value: string | number) => {
+  const handleChange = (key: string, value: string) => {
     const existingJobData: any = { ...createJobData };
     existingJobData[key] = value;
     setCreateJobData(existingJobData);
