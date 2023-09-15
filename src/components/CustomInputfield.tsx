@@ -10,6 +10,7 @@ const CustomInputfield = (props: IInputProps) => {
     id,
     defaultValue,
     placeholder,
+    showErrorText,
     height = "h-9",
     width = "w-513",
     borderRadius = "rounded-md",
@@ -22,16 +23,21 @@ const CustomInputfield = (props: IInputProps) => {
   } = props;
 
   return (
-    <input
-      type={type}
-      name={name}
-      id={id}
-      placeholder={placeholder}
-      defaultValue={defaultValue}
-      className={`outline-none ${height} ${width} ${border} ${borderRadius} ${padding} ${gap} ${fontSize} ${fontWeight} ${lineHeight}`}
-      value={value}
-      onChange={(e) => handleChange(name, e.target.value)}
-    />
+    <>
+      <input
+        type={type}
+        name={name}
+        id={id}
+        placeholder={placeholder}
+        defaultValue={defaultValue}
+        className={`outline-none ${height} ${width} ${border} ${borderRadius} ${padding} ${gap} ${fontSize} ${fontWeight} ${lineHeight}`}
+        value={value}
+        onChange={(e) => handleChange(name, e.target.value)}
+      />
+      {showErrorText && !value && (
+        <p className="text-error text-xs ">{showErrorText}</p>
+      )}
+    </>
   );
 };
 

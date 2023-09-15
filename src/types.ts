@@ -32,6 +32,7 @@ export interface IInputProps {
     lineHeight?: string;
     value: string | undefined;
     handleChange : (key:string,value:string | undefined)=> void
+    showErrorText? : string
 }
 
 export interface IBoxProps {
@@ -122,17 +123,23 @@ export interface IViewJobsProps {
 }
 
 export interface IJobListingProps {
-    id: string;
+    id?: string;
     jobTitle: string;
     industry: string;
     companyName: string;
-    maxExperience: string;
-    minExperience: string;
-    location: string;
-    remoteType: string;
-    maxSalary: string;
-    minSalary: string;
-    totalEmployee: string;
-    applyType: string;
+    maxExperience?: string;
+    minExperience?: string;
+    location?: string;
+    remoteType?: string;
+    maxSalary?: string;
+    minSalary?: string;
+    totalEmployee?: string;
+    applyType?: string;
+  }
+
+  export interface IErrorProps {
+    jobTitle: string;
+    industry: string;
+    companyName: string; 
   }
 

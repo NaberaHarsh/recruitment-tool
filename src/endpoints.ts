@@ -1,0 +1,1 @@
+export const createJob = 'https://64fc3a09605a026163ae4819.mockapi.io/jobPortal/jobportal'

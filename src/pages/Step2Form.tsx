@@ -9,12 +9,9 @@ import CustomRadioButton from "../components/CustomRadioButton";
 
 const Step2Form = () => {
   const formData: any = useContext(JobPortalContext);
-  const { createJobData, handleChange, setStep } = formData;
+  const { createJobData, handleChange, handleSubmitData } = formData;
   return (
-    <CustomContainer
-      btnText="Save"
-      handleClick={() => console.log("createJobData", createJobData)}
-    >
+    <CustomContainer btnText="Save" handleClick={handleSubmitData}>
       <CustomHeader headerLabel="Create a job" stepCount={2} />
       <CustomBox>
         <CustomLabel labelText="Experience" htmlFor="Experience" />

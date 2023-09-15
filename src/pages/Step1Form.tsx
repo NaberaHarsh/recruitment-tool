@@ -8,12 +8,9 @@ import CustomLabel from "../components/CustomLabel";
 
 const Step1Form = () => {
   const formData: any = useContext(JobPortalContext);
-  const { createJobData, handleChange, setStep } = formData;
+  const { createJobData, handleChange, handleValidate, errors } = formData;
   return (
-    <CustomContainer
-      btnText="Next"
-      handleClick={setStep ? () => setStep(2) : () => {}}
-    >
+    <CustomContainer btnText="Next" handleClick={handleValidate}>
       <CustomHeader headerLabel="Create a job" stepCount={1} />
       <CustomBox>
         <CustomLabel
@@ -28,6 +25,7 @@ const Step1Form = () => {
           placeholder="ex. UX UI Designer"
           value={createJobData.jobTitle}
           handleChange={handleChange}
+          showErrorText={errors.jobTitle}
         />
       </CustomBox>
       <CustomBox>
@@ -43,6 +41,7 @@ const Step1Form = () => {
           placeholder="ex. Google"
           value={createJobData.companyName}
           handleChange={handleChange}
+          showErrorText={errors.companyName}
         />
       </CustomBox>
       <CustomBox>
@@ -58,6 +57,7 @@ const Step1Form = () => {
           placeholder="ex. Information Technology "
           value={createJobData.industry}
           handleChange={handleChange}
+          showErrorText={errors.industry}
         />
       </CustomBox>
       <div className="grid grid-cols-2 gap-4">
@@ -77,11 +77,7 @@ const Step1Form = () => {
         </div>
         <div>
           <CustomBox width="w-244">
-            <CustomLabel
-              labelText="Remote type"
-              htmlFor="remoteType"
-              isRequired={true}
-            />
+            <CustomLabel labelText="Remote type" htmlFor="remoteType" />
             <CustomInputfield
               name="remoteType"
               id="Remote-type"
