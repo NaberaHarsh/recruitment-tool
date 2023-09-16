@@ -1,62 +1,61 @@
 export const dummyData = [
     {
       "id": "1",
-      "jobTitle": "Software Engineer",
-      "industry": "Information Technology",
-      "companyName": "Tech Innovators",
-      "maxExperience": "6",
-      "minExperience": "3",
-      "location": "San Francisco",
-      "remoteType": "Remote",
-      "maxSalary": "80000",
-      "minSalary": "40000",
-      "totalEmployee": "50",
+      "jobTitle": "UX UI Designer",
+      "industry": "Great Vibes",
+      "companyName": "Information Technology",
+      "maxExperience": "2",
+      "minExperience": "1",
+      "location": "Chennai, Tamilnadu, India",
+      "remoteType": "In-office",
+      "maxSalary": "60000",
+      "minSalary": "30000",
+      "totalEmployee": "51-200",
       "applyType": "Quick apply",
     },
     {
       "id": "2",
-      "jobTitle": "Data Scientist",
-      "industry": "Data Analytics",
-      "companyName": "Data Insights",
-      "maxExperience": "5",
-      "minExperience": "2",
-      "location": "New York City",
-      "remoteType": "Hybrid",
-      "maxSalary": "75000",
-      "minSalary": "35000",
-      "totalEmployee": "30",
-      "applyType": "Quick apply",
+      "jobTitle": "Developer",
+      "industry": "Great Vibes",
+      "companyName": "Information Technology",
+      "maxExperience": "2",
+      "minExperience": "1",
+      "location": "Chennai, Tamilnadu, India",
+      "remoteType": "In-office",
+      "maxSalary": "70000",
+      "minSalary": "50000",
+      "totalEmployee": "51-200",
+      "applyType": "External apply",
     },
     {
       "id": "3",
-      "jobTitle": "Product Manager",
-      "industry": "Product Management",
-      "companyName": "Product Masters",
-      "maxExperience": "7",
-      "minExperience": "4",
-      "location": "Seattle",
+      "jobTitle": "Interaction Designer",
+      "industry": "Great Vibes",
+      "companyName": "Information Technology",
+      "maxExperience": "2",
+      "minExperience": "1",
+      "location": "Chennai, Tamilnadu, India",
       "remoteType": "In-office",
-      "maxSalary": "90000",
-      "minSalary": "45000",
-      "totalEmployee": "40",
+      "maxSalary": "50000",
+      "minSalary": "30000",
+      "totalEmployee": "51-200",
       "applyType": "External apply",
     },
     {
       "id": "4",
-      "jobTitle": "Graphic Designer",
-      "industry": "Design",
-      "companyName": "Creative Designs",
-      "maxExperience": "3",
+      "jobTitle": "SEO Analyst",
+      "industry": "Great Vibes",
+      "companyName": "Information Technology",
+      "maxExperience": "2",
       "minExperience": "1",
-      "location": "Los Angeles",
-      "remoteType": "Remote",
-      "maxSalary": "60000",
+      "location": "Chennai, Tamilnadu, India",
+      "remoteType": "In-office",
+      "maxSalary": "50000",
       "minSalary": "30000",
-      "totalEmployee": "25",
+      "totalEmployee": "51-200",
       "applyType": "Quick apply",
     },
-  ];
-    
+  ];   
 
   export const emptyJobObject = {
     id: "", 
@@ -79,6 +78,18 @@ export const dummyData = [
     companyName: "",
   }
 
-  export const applyNowStr = "Apply Now";
-  export const externalApplyStr = "External Apply"
+export const applyNowStr = "Apply Now";
+export const externalApplyStr = "External Apply"
+export const partTimeDescription = 'Part-Time (9.00 am - 5.00 pm IST)';
+export const employeesStr = "employees";
+export const currentStr = 'INR (₹)';
+export const experienceStr = 'Experience';
+export const yearsStr = 'years';
+export const monthStr = 'Month'
 
+
+export const formatIntegerPartInINR = (amount : number) => {
+  const amountStr = Math.floor(amount).toString();
+  const formattedIntegerPart = amountStr.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  return formattedIntegerPart;
+}

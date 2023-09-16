@@ -1,5 +1,3 @@
-import { Dispatch, DispatchWithoutAction, SetStateAction } from "react";
-
 export interface ILabelProps {
     labelText : string;
     htmlFor : string;
@@ -79,7 +77,6 @@ export interface IButtonProps  {
     lineHeight?: string;
     fontFamily? : string;
     backgroundColor? : string;
-    borderColor? : string;
     handleClick : () => void;
 }
 
@@ -92,7 +89,7 @@ export interface ILogoImageProps {
 }
 
 export interface ICardProps {
-    id : string,
+    id ?: string,
 jobTitle : string;
 companyName : string;
 industry : string;

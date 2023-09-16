@@ -3,11 +3,13 @@ import "./App.css";
 import Form from "./pages/Form";
 import "./index.css";
 import { useState } from "react";
-import { dummyData, emptyErrorObject, emptyJobObject } from "./constants";
+import { emptyErrorObject, emptyJobObject } from "./constants";
 import { IErrorProps, IJobListingProps } from "./types";
 import {
+  deleteJob,
   getAvailaibleJobList,
   saveJobDetailsForm,
+  updateJobDetailsForm,
 } from "./services/createForm";
 import { useEffect } from "react";
 
@@ -17,6 +19,7 @@ function App() {
   const [jobsData, setJobsData] = useState<IJobListingProps[]>([]);
   const [open, setOpen] = useState(false);
   const [step, setStep] = useState<number>(1);
+  const [isEdit, setIsEdit] = useState<boolean>(false);
   const [createJobData, setCreateJobData] = useState<IJobListingProps>(
     emptyJobObject
   );
@@ -26,16 +29,11 @@ function App() {
     getJobList();
   }, []);
 
-  const handleDelete = (id: string) => {
-    const data = [...jobsData];
-    const filteredData = data.filter((ele) => ele.id !== id);
-    setJobsData(filteredData);
-  };
-
   const handleClose = () => {
     setOpen(false);
     setCreateJobData(emptyJobObject);
     setStep(1);
+    setIsEdit(false);
   };
 
   const handleEdit = (id: string) => {
@@ -43,6 +41,7 @@ function App() {
     const filteredData: any = data.find((ele) => ele.id === id);
     setCreateJobData(filteredData);
     setOpen(true);
+    setIsEdit(true);
   };
 
   const handleChange = (key: string, value: string) => {
@@ -81,17 +80,6 @@ function App() {
     }
   };
 
-  const handleSubmitData = async () => {
-    try {
-      await saveJobDetailsForm(createJobData);
-      setOpen(false);
-      alert("Job Created Successfully !!");
-      getJobList();
-    } catch {
-      alert("Something went wrong!!");
-    }
-  };
-
   const getJobList = async () => {
     try {
       const response: any = await getAvailaibleJobList();
@@ -99,6 +87,47 @@ function App() {
     } catch {
       alert("Something went wrong!!");
     }
+  };
+
+  const handleSubmitData = async () => {
+    try {
+      await saveJobDetailsForm(createJobData);
+      alert("Job Created Successfully !!");
+      handleClose();
+      getJobList();
+    } catch {
+      alert("Something went wrong!!");
+    }
+  };
+
+  const handleUpdateJob = async () => {
+    try {
+      await updateJobDetailsForm(createJobData);
+      alert("Job Updated Successfully !!");
+      getJobList();
+      handleClose();
+    } catch {
+      alert("Something went wrong!!");
+    }
+  };
+
+  const handleDelete = async (id: string) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete?");
+
+    if (confirmDelete) {
+      try {
+        await deleteJob(id);
+        alert("Job Deleted Successfully !!");
+        getJobList();
+        handleClose();
+      } catch {
+        alert("Something went wrong!!");
+      }
+    }
+  };
+
+  const handleApply = () => {
+    alert("Thanks For Applying !!");
   };
 
   const contextValue = {
@@ -114,7 +143,10 @@ function App() {
     handleEdit,
     handleValidate,
     handleSubmitData,
+    handleUpdateJob,
+    handleApply,
     errors,
+    isEdit,
   };
 
   return (

@@ -6,11 +6,21 @@ import { ICardProps } from "../types";
 import CustomButton from "./CustomButton";
 import { TrashIcon, PencilIcon } from "@heroicons/react/solid";
 import { JobPortalContext } from "../App";
-import { applyNowStr, externalApplyStr } from "../constants";
+import {
+  applyNowStr,
+  currentStr,
+  employeesStr,
+  experienceStr,
+  externalApplyStr,
+  formatIntegerPartInINR,
+  monthStr,
+  partTimeDescription,
+  yearsStr,
+} from "../constants";
 
 const CustomCard = (props: ICardProps) => {
   const formData: any = useContext(JobPortalContext);
-  const { handleEdit, handleDelete } = formData;
+  const { handleEdit, handleDelete, handleApply } = formData;
 
   const {
     id,
@@ -47,29 +57,28 @@ const CustomCard = (props: ICardProps) => {
             </CustomCardDescription>
           </div>
           <div className="flex flex-col gap-2">
+            <CustomCardDescription>{partTimeDescription}</CustomCardDescription>
             <CustomCardDescription>
-              Part-Time (9.00 am - 5.00 pm IST)
+              {experienceStr} ({minExperience} - {maxExperience} {yearsStr})
             </CustomCardDescription>
             <CustomCardDescription>
-              Experience ({minExperience} - {maxExperience} years)
+              {currentStr} {formatIntegerPartInINR(Number(minSalary))} -{" "}
+              {formatIntegerPartInINR(Number(maxSalary))} / {monthStr}
             </CustomCardDescription>
             <CustomCardDescription>
-              INR (₹) {minSalary} - {maxSalary} / Month
-            </CustomCardDescription>
-            <CustomCardDescription>
-              {totalEmployee} employees
+              {totalEmployee} {employeesStr}
             </CustomCardDescription>
           </div>
           <div>
             {applyType &&
               (applyType === "Quick apply" ? (
-                <CustomButton width={"w-36"} handleClick={() => {}}>
+                <CustomButton width={"w-36"} handleClick={handleApply}>
                   {applyNowStr}
                 </CustomButton>
               ) : (
                 <CustomButton
                   width={"w-44"}
-                  handleClick={() => {}}
+                  handleClick={handleApply}
                   color="text-primary"
                   backgroundColor="bg-transparent"
                   border="border border-2"
