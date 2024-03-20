@@ -6,7 +6,6 @@ const CustomButton = (props: IButtonProps) => {
     handleClick,
     children,
     height = "h-40",
-    width = "w-72",
     borderRadius = "rounded-md",
     padding = "p-2",
     border,
@@ -18,7 +17,7 @@ const CustomButton = (props: IButtonProps) => {
   } = props;
   return (
     <button
-      className={` flex justify-center items-center border-current ${height} ${width} ${borderRadius} ${padding} ${backgroundColor} ${color} ${fontSize} ${fontWeight} ${fontFamily} ${border}`}
+      className={` flex justify-center items-center border-current ${height}  ${borderRadius} ${padding} ${backgroundColor} ${color} ${fontSize} ${fontWeight} ${fontFamily} ${border}`}
       onClick={handleClick}
     >
       {children}

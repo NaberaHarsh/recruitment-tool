@@ -1,104 +1,101 @@
 import React, { useContext } from "react";
-import CustomImage from "./CustomImage";
-import logoImage from "../assets/images/ItemLogo.svg";
 import CustomCardDescription from "./CustomCardDescription";
 import { ICardProps } from "../types";
 import CustomButton from "./CustomButton";
-import { TrashIcon, PencilIcon } from "@heroicons/react/solid";
-import { JobPortalContext } from "../App";
+import { CandidatePortalContext } from "../App";
 import {
-  applyNowStr,
-  currentStr,
-  employeesStr,
-  experienceStr,
-  externalApplyStr,
+  calculateCandidateScore,
+  candidateIDStr,
+  currencyStr,
+  currentStatusStr,
+  deleteStr,
+  editStr,
+  emailStr,
+  expectedSalaryStr,
   formatIntegerPartInINR,
-  monthStr,
-  partTimeDescription,
-  yearsStr,
+  nodeJSStr,
+  phoneNumberStr,
+  reactJSStr,
+  scoreStr,
+  skillsStr,
 } from "../constants";
 
 const CustomCard = (props: ICardProps) => {
-  const formData: any = useContext(JobPortalContext);
-  const { handleEdit, handleDelete, handleApply } = formData;
+  const formData: any = useContext(CandidatePortalContext);
+  const { handleEdit, handleDelete } = formData;
 
   const {
     id,
-    jobTitle,
-    industry,
-    companyName,
-    maxExperience,
-    minExperience,
-    location,
-    remoteType,
-    maxSalary,
-    minSalary,
-    totalEmployee,
-    applyType,
+    firstName,
+    lastName,
+    email,
+    phone,
+    currentStatus,
+    expectedSalary,
+    nodeExperience,
+    reactExperience,
   } = props;
 
   return (
     <div className="bg-white rounded-lg p-4 border border-gray-300 shadow-md">
-      <div className="grid grid-cols-10">
-        <div className="col-span-1">
-          {" "}
-          <CustomImage logoImage={logoImage} altText="Logo Image" />
+      <CustomCardDescription
+        height="h-32"
+        fontSize="text-xl"
+        textAlign="text-center"
+      >
+        {firstName} {lastName}
+      </CustomCardDescription>
+      <div className="grid grid-cols-2 mt-2 mb-4">
+        <div className="flex flex-col gap-1">
+          <CustomCardDescription>{candidateIDStr}</CustomCardDescription>
+          <CustomCardDescription>{emailStr} </CustomCardDescription>
+          <CustomCardDescription>{phoneNumberStr}</CustomCardDescription>
+          <CustomCardDescription>{expectedSalaryStr}</CustomCardDescription>
+          <CustomCardDescription>{currentStatusStr}</CustomCardDescription>
+          <CustomCardDescription>{scoreStr} </CustomCardDescription>
+          <CustomCardDescription>{skillsStr}</CustomCardDescription>
+          <CustomCardDescription> </CustomCardDescription>
         </div>
-        <div className="col-span-8 flex flex-col gap-4">
-          <div>
-            <CustomCardDescription height="h-32" fontSize="text-2xl">
-              {jobTitle}
-            </CustomCardDescription>
-            <CustomCardDescription>
-              {companyName} - {industry}
-            </CustomCardDescription>
-            <CustomCardDescription color="text-gray-custom">
-              {location} - ({remoteType})
-            </CustomCardDescription>
-          </div>
-          <div className="flex flex-col gap-2">
-            <CustomCardDescription>{partTimeDescription}</CustomCardDescription>
-            <CustomCardDescription>
-              {experienceStr} ({minExperience} - {maxExperience} {yearsStr})
-            </CustomCardDescription>
-            <CustomCardDescription>
-              {currentStr} {formatIntegerPartInINR(Number(minSalary))} -{" "}
-              {formatIntegerPartInINR(Number(maxSalary))} / {monthStr}
-            </CustomCardDescription>
-            <CustomCardDescription>
-              {totalEmployee} {employeesStr}
-            </CustomCardDescription>
-          </div>
-          <div>
-            {applyType &&
-              (applyType === "Quick apply" ? (
-                <CustomButton width={"w-36"} handleClick={handleApply}>
-                  {applyNowStr}
-                </CustomButton>
-              ) : (
-                <CustomButton
-                  width={"w-44"}
-                  handleClick={handleApply}
-                  color="text-primary"
-                  backgroundColor="bg-transparent"
-                  border="border border-2"
-                >
-                  {externalApplyStr}
-                </CustomButton>
-              ))}
-          </div>
+
+        <div className="flex flex-col gap-1">
+          <CustomCardDescription color="text-gray-custom">
+            {id}
+          </CustomCardDescription>
+          <CustomCardDescription color="text-gray-custom">
+            {email}
+          </CustomCardDescription>
+          <CustomCardDescription color="text-gray-custom">
+            {phone}
+          </CustomCardDescription>
+          <CustomCardDescription color="text-gray-custom">
+            {currencyStr} {formatIntegerPartInINR(Number(expectedSalary))}
+          </CustomCardDescription>
+          <CustomCardDescription color="text-gray-custom">
+            {currentStatus.label}
+          </CustomCardDescription>
+          <CustomCardDescription color="text-gray-custom">
+            {calculateCandidateScore(nodeExperience) +
+              calculateCandidateScore(reactExperience)}
+          </CustomCardDescription>
+          <CustomCardDescription color="text-gray-custom">
+            {nodeJSStr} ({nodeExperience})
+          </CustomCardDescription>
+          <CustomCardDescription color="text-gray-custom">
+            {reactJSStr} ({reactExperience})
+          </CustomCardDescription>
         </div>
-        <div className="col-span-1 flex justify-end gap-2">
-          <CustomButton
-            backgroundColor="bg-error"
-            handleClick={() => handleDelete(id)}
-          >
-            <TrashIcon className="w-6 h-6 text-white-600" />
-          </CustomButton>
-          <CustomButton handleClick={() => handleEdit(id)}>
-            <PencilIcon className="w-6 h-6 text-white-600" />
-          </CustomButton>{" "}
-        </div>
+      </div>
+
+      <div className="grid grid-cols-2 gap-4">
+        <CustomButton
+          backgroundColor="bg-error"
+          handleClick={() => handleDelete(id)}
+        >
+          {deleteStr}
+        </CustomButton>
+        <CustomButton handleClick={() => handleEdit(id)}>
+          {editStr}
+        </CustomButton>{" "}
       </div>
     </div>
   );

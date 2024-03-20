@@ -3,87 +3,117 @@ import "./App.css";
 import Form from "./pages/Form";
 import "./index.css";
 import { useState } from "react";
-import { emptyErrorObject, emptyJobObject } from "./constants";
-import { IErrorProps, IJobListingProps } from "./types";
+import { emptyErrorObject, emptyCandidateObject } from "./constants";
+import { IErrorProps, ICandidateListingProps } from "./types";
 import {
-  deleteJob,
-  getAvailaibleJobList,
-  saveJobDetailsForm,
-  updateJobDetailsForm,
+  deleteCandidate,
+  getAvailaibleCandidateList,
+  saveCandidateDetailsForm,
+  updateCandidateDetailsForm,
 } from "./services/createForm";
 import { useEffect } from "react";
 
-export const JobPortalContext = createContext({});
+export const CandidatePortalContext = createContext({});
 
 function App() {
-  const [jobsData, setJobsData] = useState<IJobListingProps[]>([]);
-  const [open, setOpen] = useState(false);
-  const [step, setStep] = useState<number>(1);
-  const [isEdit, setIsEdit] = useState<boolean>(false);
-  const [createJobData, setCreateJobData] = useState<IJobListingProps>(
-    emptyJobObject
+  const [candidatesData, setCandidateData] = useState<ICandidateListingProps[]>(
+    []
   );
+  const [open, setOpen] = useState(false);
+
+  const [isEdit, setIsEdit] = useState<boolean>(false);
+  const [
+    createCandidateData,
+    setCreateCandidateData,
+  ] = useState<ICandidateListingProps>(emptyCandidateObject);
   const [errors, setErrors] = useState<IErrorProps>(emptyErrorObject);
 
   useEffect(() => {
-    getJobList();
+    getCandidateList();
   }, []);
 
   const handleClose = () => {
     setOpen(false);
-    setCreateJobData(emptyJobObject);
-    setStep(1);
+    setCreateCandidateData(emptyCandidateObject);
+    setErrors(emptyErrorObject);
     setIsEdit(false);
   };
 
   const handleEdit = (id: string) => {
-    const data = [...jobsData];
+    const data = [...candidatesData];
     const filteredData: any = data.find((ele) => ele.id === id);
-    setCreateJobData(filteredData);
+
+    console.log("filteredData", filteredData);
+
+    setCreateCandidateData(filteredData);
     setOpen(true);
     setIsEdit(true);
   };
 
-  const handleChange = (key: string, value: string) => {
-    const existingJobData: any = { ...createJobData };
-    existingJobData[key] = value;
-    setCreateJobData(existingJobData);
-  };
-
-  const handleNext = () => {
-    setStep(step + 1);
+  const handleChange = (
+    key: string,
+    value: string | { label: string; value: string }
+  ) => {
+    const existingCandidateData: any = { ...createCandidateData };
+    existingCandidateData[key] = value;
+    setCreateCandidateData(existingCandidateData);
   };
 
   const handleValidate = () => {
     const errors = {
-      jobTitle: "",
-      industry: "",
-      companyName: "",
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      currentStatus: "",
+      expectedSalary: "",
+      nodeExperience: "",
+      reactExperience: "",
     };
 
-    if (!createJobData.jobTitle) {
-      errors.jobTitle = "Job title is required";
+    if (!createCandidateData.firstName) {
+      errors.firstName = "First Name is required";
     }
-    if (!createJobData.industry) {
-      errors.industry = "Industry is required";
+    if (!createCandidateData.lastName) {
+      errors.lastName = "Last Name is required";
     }
-    if (!createJobData.companyName) {
-      errors.companyName = "Company name is required";
+    if (!createCandidateData.email) {
+      errors.email = "Email is required";
+    }
+    if (!createCandidateData.phone) {
+      errors.phone = "Phone number is required";
+    }
+    if (!createCandidateData.nodeExperience) {
+      errors.nodeExperience = "Node JS Experience is required";
+    }
+    if (!createCandidateData.reactExperience) {
+      errors.reactExperience = "React JS experienceis required";
+    }
+    if (!createCandidateData.currentStatus.value) {
+      errors.currentStatus = "Status is required";
+    }
+    if (!createCandidateData.expectedSalary) {
+      errors.expectedSalary = "Expected Salary is required";
     }
     setErrors(errors);
     if (
-      createJobData.jobTitle &&
-      createJobData.industry &&
-      createJobData.companyName
+      createCandidateData.firstName &&
+      createCandidateData.lastName &&
+      createCandidateData.email &&
+      createCandidateData.phone &&
+      createCandidateData.nodeExperience &&
+      createCandidateData.reactExperience &&
+      createCandidateData.currentStatus.value &&
+      createCandidateData.expectedSalary
     ) {
-      handleNext();
+      isEdit ? handleUpdateCandidate() : handleSubmitData();
     }
   };
 
-  const getJobList = async () => {
+  const getCandidateList = async () => {
     try {
-      const response: any = await getAvailaibleJobList();
-      setJobsData(response.data);
+      const response: any = await getAvailaibleCandidateList();
+      setCandidateData(response.data);
     } catch {
       alert("Something went wrong!!");
     }
@@ -91,20 +121,20 @@ function App() {
 
   const handleSubmitData = async () => {
     try {
-      await saveJobDetailsForm(createJobData);
-      alert("Job Created Successfully !!");
+      await saveCandidateDetailsForm(createCandidateData);
+      alert("Candidate Data Created Successfully !!");
       handleClose();
-      getJobList();
+      getCandidateList();
     } catch {
       alert("Something went wrong!!");
     }
   };
 
-  const handleUpdateJob = async () => {
+  const handleUpdateCandidate = async () => {
     try {
-      await updateJobDetailsForm(createJobData);
-      alert("Job Updated Successfully !!");
-      getJobList();
+      await updateCandidateDetailsForm(createCandidateData);
+      alert("Candidate Data Updated Successfully !!");
+      getCandidateList();
       handleClose();
     } catch {
       alert("Something went wrong!!");
@@ -116,9 +146,9 @@ function App() {
 
     if (confirmDelete) {
       try {
-        await deleteJob(id);
-        alert("Job Deleted Successfully !!");
-        getJobList();
+        await deleteCandidate(id);
+        alert("Candidate Data Deleted Successfully !!");
+        getCandidateList();
         handleClose();
       } catch {
         alert("Something went wrong!!");
@@ -133,17 +163,15 @@ function App() {
   const contextValue = {
     open,
     setOpen,
-    step,
-    setStep,
-    createJobData,
+    createCandidateData,
     handleChange,
     handleClose,
-    jobsData,
+    candidatesData,
     handleDelete,
     handleEdit,
     handleValidate,
     handleSubmitData,
-    handleUpdateJob,
+    handleUpdateCandidate,
     handleApply,
     errors,
     isEdit,
@@ -151,9 +179,9 @@ function App() {
 
   return (
     <div className="p-4">
-      <JobPortalContext.Provider value={contextValue}>
+      <CandidatePortalContext.Provider value={contextValue}>
         <Form />
-      </JobPortalContext.Provider>
+      </CandidatePortalContext.Provider>
     </div>
   );
 }
