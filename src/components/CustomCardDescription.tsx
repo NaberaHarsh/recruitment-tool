@@ -15,7 +15,7 @@ const CustomCardDescription = (props: ICardDescription) => {
 
   return (
     <div
-      className={` ${lineHeight} ${height} ${fontSize} ${fontWeight} ${color} ${fontFamily} ${textAlign}`}
+      className={` truncate ${lineHeight} ${height} ${fontSize} ${fontWeight} ${color} ${fontFamily} ${textAlign}`}
     >
       {children}
     </div>

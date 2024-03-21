@@ -12,7 +12,7 @@ const CustomInputfield = (props: IInputProps) => {
     placeholder,
     showErrorText,
     height = "h-9",
-    width = "w-513",
+    width,
     borderRadius = "rounded-md",
     padding = "px-3 py-2",
     gap = "space-x-10",
