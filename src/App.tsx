@@ -156,10 +156,6 @@ function App() {
     }
   };
 
-  const handleApply = () => {
-    alert("Thanks For Applying !!");
-  };
-
   const contextValue = {
     open,
     setOpen,
@@ -172,7 +168,6 @@ function App() {
     handleValidate,
     handleSubmitData,
     handleUpdateCandidate,
-    handleApply,
     errors,
     isEdit,
   };

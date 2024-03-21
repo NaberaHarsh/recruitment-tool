@@ -8,7 +8,7 @@ import { addCandidateStr } from "../constants";
 
 const Form = () => {
   const formData: any = useContext(CandidatePortalContext);
-  const { open, setOpen, handleClose, step } = formData;
+  const { open, setOpen, handleClose } = formData;
 
   return (
     <div className="flex flex-col gap-4">
